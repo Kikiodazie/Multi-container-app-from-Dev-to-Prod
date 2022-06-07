@@ -41,7 +41,7 @@ app.use(session({
         resave: false,
         saveUninitialized: false,
         httpOnly: false,
-        maxAge: 3000000,
+        maxAge: 30000,
     }
 }));
 
