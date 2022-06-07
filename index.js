@@ -20,6 +20,7 @@ let redisClient = redis.createClient({
 }
 );
 
+
 const postRouter = require("./routes/postRoutes");
 const userRouter = require("./routes/userRoutes");
 
@@ -39,7 +40,7 @@ app.use(session({
         secure: false,
         resave: false,
         saveUninitialized: false,
-        httpOnly: true,
+        httpOnly: false,
         maxAge: 30000,
     }
 }));
