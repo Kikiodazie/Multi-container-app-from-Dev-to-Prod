@@ -2,6 +2,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const session = require("express-session");
 const redis = require("redis");
+const cors = require("cors");
 let RedisStore = require("connect-redis")(session);
 
 const { 
@@ -33,6 +34,8 @@ mongoose
 .then(() => console.log("Successfully connected to DB"))
 .catch((e) => console.log(e))
 
+app.enable("trust proxy");
+app.use(cors({}));
 app.use(session({
     store: new RedisStore({client: redisClient}),
     secret: SESSION_SECRET,
@@ -50,6 +53,7 @@ app.use(express.json());
 
 app.get("/api/v1", (req, res) => {
     res.send("<h2>Hi There!!!!</h2>");
+    console.log("Yeah it ran")
 } )
 
 
